@@ -1,0 +1,18 @@
+function ArgvPull;
+function StructurePreparation;
+function ReadPDB, WritePDB;
+
+
+
+local function main []
+   local [path_in, path_out, filename] = ArgvPull [ ['-in', '-out','-report'],1];
+   pot_Load '$MOE/lib/Amber10EHT.ff.gz';
+
+   ReadPDB path_in;
+
+   local options = [cmd: 'cli', reportName:filename];
+   local issues = StructurePreparation options;
+
+   WritePDB path_out;
+quit []; 
+endfunction
